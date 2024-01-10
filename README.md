@@ -19,3 +19,9 @@ reg add "hklm\system\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnec
 reg add "hklm\system\CurrentControlSet\Control\Terminal Server" /v "AllowTSConnections" /t REG_DWORD /d 0x1 /f
 
 
+Execution
+*
+schtasks /create /tn "T1053_005_OnLogon" /sc onlogon /tr "cmd.exe /c calc.exe" 
+schtasks /create /tn "T1053_005_OnStartup" /sc onstart /ru system /tr "cmd.exe /c calc.exe"
+
+*
