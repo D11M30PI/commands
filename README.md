@@ -56,7 +56,7 @@ wmic qfe get description,installedOn /format:csv
 
 *
 WMI Reconnaissance List Remote Services
-wmic /node:"#{node}" service where (caption like "%#{service_search_string}%")
+wmic /node:"127.0.0.1" service where (caption like "%Spooler%")
 
 *
 WMI Execute Local Process
