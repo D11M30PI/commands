@@ -212,6 +212,17 @@ powershell -Command "$owners = @{}; gwmi win32_process |% {$owners[$_.handle] = 
 rem Run GetToken.ps1 and create a process from lsass
 powershell -Command "& '%PathToAtomicsFolder%\T1134.002\src\GetToken.ps1'; [MyProcess]::CreateProcessFromParent((Get-Process lsass).Id,'cmd.exe')"
 
+***
+
+@echo off
+
+
+for /f "tokens=*" %%A in ('powershell -Command "Start-Process -FilePath $Env:windir\System32\notepad.exe -PassThru"') do set notepad=%%A
+
+
+powershell -Command "Start-Process -FilePath $Env:windir\System32\WindowsPowerShell\v1.0\powershell.exe -ArgumentList '-Command Start-Sleep 10' -PassThru -WindowStyle Hidden -Wait -WorkingDirectory $Env:windir\System32 -Verb RunAs -ErrorAction Stop -PassThru -ArgumentList '-ParentProcessId', $notepad.Id"
+
+
 
 
 
