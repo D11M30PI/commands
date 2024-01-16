@@ -144,4 +144,18 @@ Service Registry Permissions Weakness
 powershell -Command "Get-Acl REGISTRY::HKLM\SYSTEM\CurrentControlSet\Services\* | Format-List"
 powershell -Command "Get-Acl REGISTRY::HKLM\SYSTEM\CurrentControlSet\Services\weakservicename | Format-List"
 
+** HKLM - Add atomic_test key to launch executable as part of user setup
+
+@echo off
+
+rem Create registry key
+reg add "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components" /v "atomic_test" /t REG_SZ /d "ART TEST" /f
+
+rem Set StubPath value
+reg add "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\atomic_test" /v "StubPath" /t REG_SZ /d "#{payload}" /f
+
+rem Runonce command
+%SystemRoot%\system32\runonce.exe /AlternateShellStartup
+
+
 
