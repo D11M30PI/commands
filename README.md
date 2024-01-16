@@ -223,6 +223,17 @@ for /f "tokens=*" %%A in ('powershell -Command "Start-Process -FilePath $Env:win
 powershell -Command "Start-Process -FilePath $Env:windir\System32\WindowsPowerShell\v1.0\powershell.exe -ArgumentList '-Command Start-Sleep 10' -PassThru -WindowStyle Hidden -Wait -WorkingDirectory $Env:windir\System32 -Verb RunAs -ErrorAction Stop -PassThru -ArgumentList '-ParentProcessId', $notepad.Id"
 
 
+******
+@echo off
+
+
+for /f "tokens=*" %%A in ('powershell -Command "Start-Process -FilePath $Env:windir\System32\notepad.exe -PassThru"') do set notepad=%%A
+
+
+powershell -Command "Start-Process -FilePath $Env:windir\System32\WindowsPowerShell\v1.0\powershell.exe -ArgumentList '-Command Start-Sleep 10' -PassThru -WindowStyle Hidden -Wait -WorkingDirectory $Env:windir\System32 -Verb RunAs -ErrorAction Stop -PassThru -ArgumentList '-ParentProcessId', $notepad.Id"
+
+
+
 
 
 
