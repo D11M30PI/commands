@@ -132,4 +132,9 @@ rem Download and extract zip file
 set "zipUrl=https://github.com/center-for-threat-informed-defense/adversary_emulation_library/raw/master/micro_emulation_plans/src/named_pipes/named_pipes.zip"
 powershell -Command "Invoke-FetchFromZip '%zipUrl%' '*.exe' 'PathToAtomicsFolder\..\ExternalPayloads'"
 
- 
+*Append malicious start-process cmdlet
+
+ echo Add-Content $profile -Value "" >> $profile
+echo Add-Content $profile -Value "Start-Process calc.exe" >> $profile
+powershell -Command exit
+
