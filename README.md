@@ -138,3 +138,10 @@ powershell -Command "Invoke-FetchFromZip '%zipUrl%' '*.exe' 'PathToAtomicsFolder
 echo Add-Content $profile -Value "Start-Process calc.exe" >> $profile
 powershell -Command exit
 
+**
+Service Registry Permissions Weakness
+
+powershell -Command "Get-Acl REGISTRY::HKLM\SYSTEM\CurrentControlSet\Services\* | Format-List"
+powershell -Command "Get-Acl REGISTRY::HKLM\SYSTEM\CurrentControlSet\Services\weakservicename | Format-List"
+
+
