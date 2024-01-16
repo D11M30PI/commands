@@ -158,4 +158,14 @@ rem Runonce command
 %SystemRoot%\system32\runonce.exe /AlternateShellStartup
 
 
+*****************
+
+@echo off
+
+rem Create directory
+mkdir "c:\Tools" 2>nul
+
+rem Download DLL file
+powershell -Command "Invoke-WebRequest 'https://github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1546.011/bin/AtomicTest.dll' -OutFile 'c:\Tools\AtomicTest.dll'"
+
 
