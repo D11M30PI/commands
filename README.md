@@ -262,5 +262,12 @@ wmic process list > %TEMP%\T1119_3.txt
 tree C:\AtomicRedTeam\atomics > %TEMP%\T1119_4.txt
 
 
+********************
+
+@echo off
+powershell -Command "for ($i=0; $i -le 1000; $i++) { Resolve-DnsName -Type 'TXT' ('atomicredteam-' + (Get-Random -Minimum 1 -Maximum 999999) + '.127.0.0.1.nip.io') -QuickTimeout }"
+
+
+
 
 
