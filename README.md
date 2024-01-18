@@ -268,6 +268,12 @@ tree C:\AtomicRedTeam\atomics > %TEMP%\T1119_4.txt
 powershell -Command "for ($i=0; $i -le 1000; $i++) { Resolve-DnsName -Type 'TXT' ('atomicredteam-' + (Get-Random -Minimum 1 -Maximum 999999) + '.127.0.0.1.nip.io') -QuickTimeout }"
 
 
+***************
+@echo off
+powershell -Command "for ($i=0; $i -le 1000; $i++) { (Invoke-WebRequest -Uri ('https://8.8.8.8/resolve?name=atomicredteam.' + (Get-Random -Minimum 1 -Maximum 999999) + '.127.0.0.1.xip.io&type=TXT') -UseBasicParsing).Content }"
+
+
+
 
 
 
