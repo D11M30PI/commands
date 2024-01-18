@@ -255,6 +255,12 @@ esentutl.exe /y /vss %SystemRoot%/system32/config/SAM /d %temp%/SAM
 
 "%programfiles%/WinRAR/Rar.exe" a -r %USERPROFILE%\T1560.001-data.rar %USERPROFILE%\*.txt
 
+***********
+sc query type=service > %TEMP%\T1119_1.txt
+doskey /history > %TEMP%\T1119_2.txt
+wmic process list > %TEMP%\T1119_3.txt
+tree C:\AtomicRedTeam\atomics > %TEMP%\T1119_4.txt
+
 
 
 
